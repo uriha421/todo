@@ -1,0 +1,55 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{ getName() }}'s To Do List
+      </h1>
+      <h2 class="subtitle">
+        This is a to do list.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+   
+    <div class="field has-addons">
+      <div class="control">
+        <input class="input" type="text" placeholder="PlaceHolder" #todoText />
+      </div>
+      <div class="control">
+        <button class="button is-info" (click)="addItem(todoText.value)">
+          ADD
+        </button>
+      </div>
+    </div>
+
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Description</th>
+          <th>Check</th>
+          <th>Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of getTodoItems(); let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.action }}</td>
+          <td>
+            <label class="checkbox">
+              <input type="checkbox" [(ngModel)]="item.done" />
+            </label>
+          </td>
+          <td [ngSwitch]="item.done">
+            <span *ngSwitchCase="true">Yes</span>
+            <span *ngSwitchCase="false">No</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>
